@@ -4,6 +4,63 @@
     </head>
     <body>
         <h1>Day 5</h1>
+        <h2>Summary</h2>
+        <div>
+            My summary of what I've learned today is:
+            <dl>
+                <dt>
+                    image link
+                </dt>
+                <dd>
+                    I have discovered manyinteresting things today! some of which I can turn
+                     an image into a link was the most interesting thing 
+                     I have ever learned today! to do that I nest
+                      <code>&it;img&gt;</code>tag into<code>&lt;a&gt;</code> tag
+                </dd>
+                <dt>
+                    Web video format
+                </dt>
+                <dd>
+                    I have learned 3 web video format those are: <b>MPEG-4</b>, <b>OOG</b> & <b>WebM</b>.
+                    I have also looked into Web Support of those format. <b>MPEG-4</b> and WebM
+                    and royalties which <b>MPEG-4</b> is a royalty, But OOG and WebM are royalty free! <br>
+                    also to mention that I can go to either <a href="zambar.com">Zambar</a> or <a href="online-convert.com/">Online-Convert</a>.
+                </dd>
+                <dt>
+                    video displaying
+                </dt>
+                <dd>
+                    I learned today that I can use &lt;video&gt; tag nested into &lt;ifigure&gt; to display a <em>video</em>.
+                    I also have learned about 7 atributes for the <code>&lt;video&gt;</code> tag, those are:
+                    <ul>
+                        <li>src</li>
+                        <li>poster</li>
+                        <li>width</li>
+                        <li>height</li>
+                        <li>autoplay</li>
+                        <li>controls</li>
+                        <li>loop</li>
+                        that's all!
+                    </ul>
+                </dd>
+                <dt>image align</dt>
+                <dd>
+                    I can align an image only by using css. With <code>&lt;style="vertical-align: value;"&gt;</code> I can simply align the image where I want, some of the values are:
+                <ul>
+                    <li>baseline</li>
+                    <li>bottom</li>
+                    <li>middle</li>
+                    <li>top</li>
+                </ul>
+                </dd>
+                <dt>embeding video code</dt>
+                <dd>
+                    with the help of <a href="youtube.com">YouTube</a> I can download a video and embed it into a code for the <code>&lt;video&gt;</code> tag.
+                </dd>
+
+            </dl>
+
+        </div>
         <h2>Exercises</h2>
         <form>
             <menu>
@@ -22,33 +79,33 @@
                                 <ol type="a">
                                     <li>
                                         <em>Sunflower.html</em>
-                                        <input type="radio" id="rad-1-yes" name="rad-1" value="yes"  /><label for="rad-1-yes">Yes</label>
+                                        <input type="radio" id="rad-1-yes" name="rad-1" value="yes" checked /><label for="rad-1-yes">Yes</label>
                                         <input type="radio" id="rad-1-no" name="rad-1" value="no"  /><label for="rad-1-no">No</label>
                                     </li>
                                     <li>
                                         <em>index.doc</em>
-                                        <input type="radio" id="rad-2-yes" name="rad-2" value="yes"  /><label for="rad-2-yes">Yes</label>
-                                        <input type="radio" id="rad-2-no" name="rad-2" value="no"  /><label for="rad-2-no">No</label>
+                                        <input type="radio" id="rad-2-yes" name="rad-2" value="yes" /><label for="rad-2-yes">Yes</label>
+                                        <input type="radio" id="rad-2-no" name="rad-2" value="no" checked /><label for="rad-2-no">No</label>
                                     </li>
                                     <li>
                                         <em>cooking home page.html</em>
                                         <input type="radio" id="rad-3-yes" name="rad-3" value="yes"  /><label for="rad-3-yes">Yes</label>
-                                        <input type="radio" id="rad-3-no" name="rad-3" value="no"  /><label for="rad-3-no">No</label>
+                                        <input type="radio" id="rad-3-no" name="rad-3" value="no" checked /><label for="rad-3-no">No</label>
                                     </li>
                                     <li>
                                         <em>Song_Lyrics.html</em>
-                                        <input type="radio" id="rad-4-yes" name="rad-4" value="yes"  /><label for="rad-4-yes">Yes</label>
+                                        <input type="radio" id="rad-4-yes" name="rad-4" value="yes" checked /><label for="rad-4-yes">Yes</label>
                                         <input type="radio" id="rad-4-no" name="rad-4" value="no"  /><label for="rad-4-no">No</label>
                                     </li>
                                     <li>
                                         <em>games/rubix.html</em>
-                                        <input type="radio" id="rad-5-yes" name="rad-5" value="yes"  /><label for="rad-5-yes">Yes</label>
+                                        <input type="radio" id="rad-5-yes" name="rad-5" value="yes" checked /><label for="rad-5-yes">Yes</label>
                                         <input type="radio" id="rad-5-no" name="rad-5" value="no"  /><label for="rad-5-no">No</label>
                                     </li>
                                     <li>
                                         <em>%whatever.html</em>
                                         <input type="radio" id="rad-6-yes" name="rad-6" value="yes"  /><label for="rad-6-yes">Yes</label>
-                                        <input type="radio" id="rad-6-no" name="rad-6" value="no"  /><label for="rad-6-no">No</label>
+                                        <input type="radio" id="rad-6-no" name="rad-6" value="no" checked /><label for="rad-6-no">No</label>
                                     </li>
                                 </ol>
                             </li>
@@ -57,26 +114,34 @@
                                 <ol type="a">
                                     <li>
                                         <code>&lt;img &quot;birthday.jpg&quot;&gt;</code>
+                                        <p>it doesn't have the <em>src</em> atribute before birthday!</p>
                                     </li>
                                     <li>
                                         <code>&lt;em&gt;Congratulations!&lt;em&gt;</code>
+                                        <p>it doesn't have an endtag!</p>
                                     </li>
                                     <li>
                                         <code>&lt;a href=&quot;birthday.jpg&quot;&gt;linked text&lt;/a href=&quot;birthday.jpg&quot;&gt;</code>
+                                        <p>Really? a closing tag having an atribute? like come on man! </p>
                                     </li>
                                     <li>
                                         <code>&lt;p&gt;This is a new paragraph&lt;\p&gt;</code>
                                     </li>
                                     <li>
                                         <code>&lt;p&gt;This is another paragraph with an &lt;article&gt;article&lt;/p&gt;&lt;/article&gt;</code>
+                                        <p><code>&lt;p&gt;</code> tag has no end, because the closing paragraph is surrounded by <strong>Article tag</strong></p>
                                     </li>
                                 </ol>
                             </li>
                             <li>
                                 <span>How would you mark up this comment in an HTML document so that it doesn't display in the browser window?</span>
                                 <p>
-                                    <code>product list begins here</code>
+                                    <code></code><del>product list begins here</del></code>
                                 </p>
+                            </li>
+                            <li>
+                                <span>Give an example of an image link</span>
+                                <h2>this-></h2><a href=""><img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.creativebloq.com%2Fnews%2Fyoutube-logo-history&psig=AOvVaw0x-FRaadkyUggfcMfrolmo&ust=1706375395340000&source=images&cd=vfe&opi=89978449&ved=0CBMQjRxqFwoTCOiHhu7F-4MDFQAAAAAdAAAAABAD" alt="" title="YouTube" width="10%" height="10%">Youtube</a>
                             </li>
                         </ol>
                     </p>
