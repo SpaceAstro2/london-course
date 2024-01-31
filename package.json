@@ -1,0 +1,25 @@
+{
+  "name": "london-course",
+  "version": "1.0.0",
+  "description": "London Course exercises for learning HTML, CSS and JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test --test-only **/*.spec.js",
+    "test:watch": "node --test --watch **/*.spec.js",
+    "test:watch:only": "node --test --watch --test-only **/*.spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spaceastro2/london-course.git"
+  },
+  "author": "David Neamtiu <davenea97@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spaceastro2/london-course/issues"
+  },
+  "homepage": "https://github.com/spaceastro2/london-course#readme",
+  "devDependencies": {
+    "fast-html-parser": "^1.0.1",
+    "prettier": "^3.2.4"
+  }
+}

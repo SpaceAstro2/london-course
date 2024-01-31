@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Day 7 - London Course</title>
+        <script src="../scripts/form-utils.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("form-1");
+                if (form !== null) {
+                    form.addEventListener("submit", (event) => fu.submitHandler2(event, document, 'form-1', [
+                        {id: 'username', name: 'username', type: 'textbox'},
+                        {id: 'password', name: 'password', type: 'password'},
+                        {type: 'submit'},
+                    ]));
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Day 7</h1>
+        <h2>Exercise 1</h2>
+        <p>Create a login form with id "form-1" with a username and password field and a submit button</p>
+        <p>The username must have an id of "username" and a name of "username"</p>
+        <p>The password must have an id of "password" and a name of "password"</p>
+        <p>Once done, hit the submit button!</p>
+    </body>
+</html>
