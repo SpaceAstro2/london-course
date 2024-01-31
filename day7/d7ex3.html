@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <title>Day 7, Exercise 3 - London Course</title>
+        <script src="../scripts/form-utils.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("form-1");
+                if (form !== null) {
+                    form.addEventListener("submit", (event) => fu.submitHandler2(event, document, 'form-1', 
+                        [
+                            {for: '0-12', type: 'label'},
+                            {for: '13-30', type: 'label'},
+                            {for: '31-60', type: 'label'},
+                            {for: '61-120', type: 'label'},
+                            {id: '0-12', value: '0-12', type: 'radio', name: 'age-within'},
+                            {id: '13-30', value: '13-30', type: 'radio', name: 'age-within'},
+                            {id: '31-60', value: '31-60', type: 'radio', name: 'age-within'},
+                            {id: '61-120', value: '61-120', type: 'radio', name: 'age-within'},
+                            {type: 'submit'},
+                        ]
+                    ));
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Day 7</h1>
+        <h2>Exercise 3</h2>
+        <p>Create a "my age is within" form with id "form-1" with four radio buttons: 0-12, 13-30, 31-60, 61-120, plus a label and a submit button</p>
+        <p>Each of the radio buttons should have a name of "age-within" together with their id and value</p>
+        <p>Once done, hit the submit button!</p>
+        <form id="form-1">
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>

@@ -9,10 +9,10 @@
                     form.addEventListener("submit", (event) => fu.submitHandler2(event, document, 'form-1', [
                         {id: 'favourite-pet', name: 'favourite-pet', type: 'select'},
                         {for: 'favourite-pet', type: 'label'},
-                        {id: 'cat', name: 'cat', type: 'option', parent: 'favourite-pet'},
-                        {id: 'dog', name: 'dog', type: 'option', parent: 'favourite-pet'},
-                        {id: 'goldfish', name: 'goldfish', type: 'option', parent: 'favourite-pet'},
-                        {id: 'lion', name: 'lion', type: 'option', parent: 'favourite-pet'},
+                        {id: 'cat', value: 'cat', type: 'option', parent: 'favourite-pet'},
+                        {id: 'dog', value: 'dog', type: 'option', parent: 'favourite-pet'},
+                        {id: 'goldfish', value: 'goldfish', type: 'option', parent: 'favourite-pet'},
+                        {id: 'lion', value: 'lion', type: 'option', parent: 'favourite-pet'},
                         {type: 'submit'},
                     ]));
                 }
@@ -24,7 +24,7 @@
         <h2>Exercise 2</h2>
         <p>Create a favourite pets form with id "form-1" with a select list that has four options: cat, dog, goldfish and lion, plus a label and a submit button</p>
         <p>The select list must have an id of "favourite-pet" and a name of "favourite-pet"</p>
-        <p>The options must have an ids and names of "cat", "dog", "goldfish" and "lion"</p>
+        <p>The options must have an ids and values of "cat", "dog", "goldfish" and "lion"</p>
         <p>Once done, hit the submit button!</p>
         <form id="form-1">
             <label for="favourite-pet">choose your favourite-pet</label>

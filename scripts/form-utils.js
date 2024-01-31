@@ -11,11 +11,15 @@ fu = (function () {
 
     elements.push(...getAllChildElements(form.childNodes));
 
-    console.log({ elements });
-
     return elements;
   };
 
+  /**
+   *
+   * @param {Document} document
+   * @param {object} expected
+   * @returns
+   */
   const verifyAllFormControlElements = (document, expected) => {
     const result = [];
 
@@ -30,6 +34,13 @@ fu = (function () {
           const elements = document.getElementsByTagName('label');
           for (let j = 0; j < elements.length; j++) {
             if (elements[j].attributes['for']?.value === field.for) {
+              element = elements[j];
+            }
+          }
+        } else if (field.type === 'option') {
+          const elements = document.getElementsByTagName('option');
+          for (let j = 0; j < elements.length; j++) {
+            if (elements[j].value === field.value) {
               element = elements[j];
             }
           }
@@ -74,7 +85,7 @@ fu = (function () {
     if (element == null) {
       return `Field ${fieldId} (${field.type}) not found`;
     } else {
-      if (field.type !== 'submit' && field.type !== 'label') {
+      if (field.type !== 'submit' && field.type !== 'label' && field.type !== 'option') {
         const name = element.attributes['name']?.value;
         if (name == null) {
           return `Field ${fieldId} (${field.type}) has no name: Expected it to be ${field.name}`;
@@ -89,11 +100,21 @@ fu = (function () {
             return `Field ${fieldId} (${field.type}) is the wrong tag: Expected select, but found ${element.tagName.toLocaleLowerCase()}`;
           }
           break;
+        case 'radio':
+          if (element.tagName.toLocaleLowerCase() !== 'input') {
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected input, but found ${element.tagName.toLocaleLowerCase()}`;
+          }
+          if (element.attributes['name']?.value !== field.name) {
+            return `Field ${fieldId} (${field.type}) is the wrong name: Expected ${field.name}, but found ${element.attributes['name']?.value}`;
+          }
+          if (element.value !== field.value) {
+            return `Field ${fieldId} (${field.type}) is the wrong value: Expected ${field.value}, but found ${element.value}`;
+          }
+          break;
         case 'option':
           if (element.tagName.toLocaleLowerCase() !== 'option') {
             return `Field ${fieldId} (${field.type}) is the wrong tag: Expected option, but found ${element.tagName.toLocaleLowerCase()}`;
           }
-          console.log({ element });
           if (element.parentElement.name !== field.parent) {
             return `Field ${fieldId} (${field.type}) is not within the correct select list: Expected select list to be ${field.parent}`;
           }
@@ -145,9 +166,6 @@ fu = (function () {
     for (let i = 0; i < children.length; i++) {
       const child = children[i];
 
-      // if (typeof child === TextNode) {
-      //   continue;
-      // }
       if (HTML_FORM_ELEMENTS.includes(child.tagName?.toLocaleLowerCase())) {
         elements.push(child);
       }
@@ -228,13 +246,16 @@ fu = (function () {
 
     const result = verifyAllFormControlElements(document, expected);
 
-    console.log({ result });
-
     buildReport(document, result);
 
     return result;
   };
 
+  /**
+   *
+   * @param {Document} document
+   * @param {object} result
+   */
   const buildReport = (document, result) => {
     let reportHeaderMsg = "Congratulations, you've done it! Well done 🎉˚ ༘ ೀ⋆.˚🥳🎊";
 
