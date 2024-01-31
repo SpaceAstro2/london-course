@@ -1,5 +1,5 @@
 fu = (function () {
-  const HTML_FORM_ELEMENTS = ['input', 'textarea', 'select', 'option'];
+  const HTML_FORM_ELEMENTS = ['input', 'textarea', 'select', 'option', 'label'];
 
   /**
    *
@@ -25,8 +25,17 @@ fu = (function () {
 
       if (field.id != null) {
         element = document.getElementById(field.id);
-      } else if (field.type === 'submit') {
-        element = document.getElementsByTagName('button')[0];
+      } else {
+        if (field.type === 'label') {
+          const elements = document.getElementsByTagName('label');
+          for (let j = 0; j < elements.length; j++) {
+            if (elements[j].attributes['for']?.value === field.for) {
+              element = elements[j];
+            }
+          }
+        } else if (field.type === 'submit') {
+          element = document.getElementsByTagName('button')[0];
+        }
       }
 
       const comment = verifyFormControlElement(element, field);
@@ -38,13 +47,34 @@ fu = (function () {
     return result;
   };
 
+  /**
+   *
+   * @param {object} field
+   */
+  const getFieldId = (field) => {
+    switch (field.type) {
+      case 'submit':
+        return field.type;
+      case 'label':
+        return `${field.type}[for=${field.for}]`;
+      default:
+        return field.id;
+    }
+  };
+
+  /**
+   *
+   * @param {HTMLElement} element
+   * @param {object} field
+   * @returns
+   */
   const verifyFormControlElement = (element, field) => {
-    const fieldId = field.id || field.type;
+    const fieldId = getFieldId(field);
 
     if (element == null) {
       return `Field ${fieldId} not found`;
     } else {
-      if (field.type !== 'submit') {
+      if (field.type !== 'submit' && field.type !== 'label') {
         const name = element.attributes['name']?.value;
         if (name == null) {
           return `Field ${fieldId} has no name: Expected it to be ${field.name}`;
@@ -73,6 +103,14 @@ fu = (function () {
           }
           if (element.type !== 'password') {
             return `Field ${fieldId} is the wrong type of form control: Expected password, but found ${element.type}`;
+          }
+          break;
+        case 'label':
+          if (element.tagName.toLocaleLowerCase() !== 'label') {
+            return `Field ${fieldId} is the wrong tag: Expected label, but found ${element.tagName.toLocaleLowerCase()}`;
+          }
+          if (element.attributes['for']?.value !== field.for) {
+            return `Field ${fieldId} is associated with the wrong form control: Expected ${field.for}, but found ${element.attributes['for']?.value}`;
           }
           break;
         case 'submit':

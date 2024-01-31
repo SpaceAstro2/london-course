@@ -8,7 +8,9 @@
                 if (form !== null) {
                     form.addEventListener("submit", (event) => fu.submitHandler2(event, document, 'form-1', [
                         {id: 'username', name: 'username', type: 'textbox'},
+                        {for: 'username', type: 'label'},
                         {id: 'password', name: 'password', type: 'password'},
+                        {for: 'password', type: 'label'},
                         {type: 'submit'},
                     ]));
                 }
@@ -18,7 +20,7 @@
     <body>
         <h1>Day 7</h1>
         <h2>Exercise 1</h2>
-        <p>Create a login form with id "form-1" with a username and password field and a submit button</p>
+        <p>Create a login form with id "form-1" with a username and password field, plus labels and a submit button</p>
         <p>The username must have an id of "username" and a name of "username"</p>
         <p>The password must have an id of "password" and a name of "password"</p>
         <p>Once done, hit the submit button!</p>
