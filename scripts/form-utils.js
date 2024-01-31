@@ -72,53 +72,62 @@ fu = (function () {
     const fieldId = getFieldId(field);
 
     if (element == null) {
-      return `Field ${fieldId} not found`;
+      return `Field ${fieldId} (${field.type}) not found`;
     } else {
       if (field.type !== 'submit' && field.type !== 'label') {
         const name = element.attributes['name']?.value;
         if (name == null) {
-          return `Field ${fieldId} has no name: Expected it to be ${field.name}`;
+          return `Field ${fieldId} (${field.type}) has no name: Expected it to be ${field.name}`;
         }
         if (name !== field.name) {
-          return `Field ${fieldId} has the wrong name: Expected ${field.name}, but found ${name}`;
+          return `Field ${fieldId} (${field.type}) has the wrong name: Expected ${field.name}, but found ${name}`;
         }
       }
       switch (field.type) {
         case 'select':
           if (element.tagName.toLocaleLowerCase() !== 'select') {
-            return `Field ${fieldId} is the wrong tag: Expected select, but found ${element.tagName.toLocaleLowerCase()}`;
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected select, but found ${element.tagName.toLocaleLowerCase()}`;
+          }
+          break;
+        case 'option':
+          if (element.tagName.toLocaleLowerCase() !== 'option') {
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected option, but found ${element.tagName.toLocaleLowerCase()}`;
+          }
+          console.log({ element });
+          if (element.parentElement.name !== field.parent) {
+            return `Field ${fieldId} (${field.type}) is not within the correct select list: Expected select list to be ${field.parent}`;
           }
           break;
         case 'textbox':
           if (element.tagName.toLocaleLowerCase() !== 'input') {
-            return `Field ${fieldId} is the wrong tag: Expected input, but found ${element.tagName.toLocaleLowerCase()}`;
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected input, but found ${element.tagName.toLocaleLowerCase()}`;
           }
           if (element.type !== 'text') {
-            return `Field ${fieldId} is the wrong type of form control: Expected text, but found ${element.type}`;
+            return `Field ${fieldId} (${field.type}) is the wrong type of form control: Expected text, but found ${element.type}`;
           }
           break;
         case 'password':
           if (element.tagName.toLocaleLowerCase() !== 'input') {
-            return `Field ${fieldId} is the wrong tag: Expected input, but found ${element.tagName.toLocaleLowerCase()}`;
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected input, but found ${element.tagName.toLocaleLowerCase()}`;
           }
           if (element.type !== 'password') {
-            return `Field ${fieldId} is the wrong type of form control: Expected password, but found ${element.type}`;
+            return `Field ${fieldId} (${field.type}) is the wrong type of form control: Expected password, but found ${element.type}`;
           }
           break;
         case 'label':
           if (element.tagName.toLocaleLowerCase() !== 'label') {
-            return `Field ${fieldId} is the wrong tag: Expected label, but found ${element.tagName.toLocaleLowerCase()}`;
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected label, but found ${element.tagName.toLocaleLowerCase()}`;
           }
           if (element.attributes['for']?.value !== field.for) {
-            return `Field ${fieldId} is associated with the wrong form control: Expected ${field.for}, but found ${element.attributes['for']?.value}`;
+            return `Field ${fieldId} (${field.type}) is associated with the wrong form control: Expected ${field.for}, but found ${element.attributes['for']?.value}`;
           }
           break;
         case 'submit':
           if (element.tagName.toLocaleLowerCase() !== 'button') {
-            return `Field ${fieldId} is the wrong tag: Expected button, but found ${element.tagName.toLocaleLowerCase()}`;
+            return `Field ${fieldId} (${field.type}) is the wrong tag: Expected button, but found ${element.tagName.toLocaleLowerCase()}`;
           }
           if (element.type !== 'submit') {
-            return `Field ${fieldId} is the wrong type of form control: Expected submit, but found ${element.type}`;
+            return `Field ${fieldId} (${field.type}) is the wrong type of form control: Expected submit, but found ${element.type}`;
           }
           break;
       }
@@ -227,9 +236,15 @@ fu = (function () {
   };
 
   const buildReport = (document, result) => {
-    if (result.length === 0) {
-      result.push("Congratulations, you've done it! Well done 🎉˚ ༘ ೀ⋆.˚🥳🎊");
+    let reportHeaderMsg = "Congratulations, you've done it! Well done 🎉˚ ༘ ೀ⋆.˚🥳🎊";
+
+    if (result.length !== 0) {
+      reportHeaderMsg = "Oh dear, it looks like you've got a few issues you need to resolve:";
     }
+
+    const reportHeader = document.createElement('h3');
+    reportHeader.appendChild(document.createTextNode(reportHeaderMsg));
+    document.body.appendChild(reportHeader);
 
     //Remove the old report, if it exists
     const reportEl = document.getElementById('report');

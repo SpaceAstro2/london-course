@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Day 7, Exercise 2 - London Course</title>
+        <script src="../scripts/form-utils.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const form = document.getElementById("form-1");
+                if (form !== null) {
+                    form.addEventListener("submit", (event) => fu.submitHandler2(event, document, 'form-1', [
+                        {id: 'favourite-pet', name: 'favourite-pet', type: 'select'},
+                        {for: 'favourite-pet', type: 'label'},
+                        {id: 'cat', name: 'cat', type: 'option', parent: 'favourite-pet'},
+                        {id: 'dog', name: 'dog', type: 'option', parent: 'favourite-pet'},
+                        {id: 'goldfish', name: 'goldfish', type: 'option', parent: 'favourite-pet'},
+                        {id: 'lion', name: 'lion', type: 'option', parent: 'favourite-pet'},
+                        {type: 'submit'},
+                    ]));
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <h1>Day 7</h1>
+        <h2>Exercise 2</h2>
+        <p>Create a favourite pets form with id "form-1" with a select list that has four options: cat, dog, goldfish and lion, plus a label and a submit button</p>
+        <p>The select list must have an id of "favourite-animal" and a name of "favourite-animal"</p>
+        <p>The options must have an ids and names of "cat", "dog", "goldfish" and "lion"</p>
+        <p>Once done, hit the submit button!</p>
+    </body>
+</html>
