@@ -82,6 +82,8 @@ fu = (function () {
   const verifyFormControlElement = (element, field) => {
     const fieldId = getFieldId(field);
 
+    console.log({ field, element });
+
     if (element == null) {
       return `Field ${fieldId} (${field.type}) not found`;
     } else {
